@@ -1,0 +1,20 @@
+﻿@model IEnumerable<n01397767_Assignment3_CumlativeProject.Models.Student>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Students </h2>
+@* A form for getting the search Id *@
+<form action="/Student/List" method="get">
+    <input type="text" name="SearchKey" />
+    <input type="submit" value="Search" />
+</form>
+<span>@Model.Count() Results Found</span>
+@foreach (var Student in Model)
+{
+    <h3>
+        <a href="/Student/Show/@Student.StudentId" />
+        @Student.StudentFname @Student.StudentLname
+    </h3>
+}
