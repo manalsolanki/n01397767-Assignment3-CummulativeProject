@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using MySql.Data.MySqlClient;
 using n01397767_Assignment3_CumlativeProject.Models;
+using System.Diagnostics;
 
 namespace n01397767_Assignment3_CumlativeProject.Controllers
 {
@@ -13,7 +14,8 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
     {
         private SchoolDbContext School = new SchoolDbContext();
         [HttpGet]
-        public IEnumerable<Teacher> ListTeachers()
+        [Route("api/TeacherData/ListTeachers/{searchKey?}")]
+        public IEnumerable<Teacher> ListTeachers(string searchKey=null)
         {
             //Create an instance of a connection
             MySqlConnection Connection = School.AccessDatabase();
@@ -26,11 +28,12 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
 
 
             //SQL QUERY
-            cmd.CommandText = "SELECT * FROM teachers";
+            cmd.CommandText = "Select * from teachers where lower(teacherfname) like lower(@key) or lower(teacherlname) like lower(@key) or lower(concat(teacherfname, ' ', teacherlname)) like lower(@key)";
 
+            cmd.Parameters.AddWithValue("@key", "%" + searchKey + "%");
             //Gather Result Set of Query into a variable specific result set of the query we provied
             MySqlDataReader ResultSet = cmd.ExecuteReader();
-
+            
             //Create an empty list of Author Names
             List<Teacher> TeachersNames = new List<Teacher> { };
 

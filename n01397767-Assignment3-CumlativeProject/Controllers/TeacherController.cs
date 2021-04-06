@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using n01397767_Assignment3_CumlativeProject.Models;
+using System.Diagnostics;
 
 namespace n01397767_Assignment3_CumlativeProject.Controllers
 {
@@ -15,10 +16,10 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
             return View();
         }
         //GET : Teacher/List
-        public ActionResult List()
+        public ActionResult List(string SearchKey = null)
         {
             TeacherDataController controller = new TeacherDataController();
-            IEnumerable<Teacher> Teachers = controller.ListTeachers();
+            IEnumerable<Teacher> Teachers = controller.ListTeachers(SearchKey);
             return View(Teachers);
         }
 
