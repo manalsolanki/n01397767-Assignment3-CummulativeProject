@@ -57,7 +57,8 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
                 int TeacherId = (int)ResultSet["teacherid"]; 
                 string TeacherfName = (string)ResultSet["teacherfname"];
                 string TeacherlName = (string)ResultSet["teacherlname"];
-                string TeacherHireDate = ResultSet["hiredate"].ToString();
+                DateTime Hiredate = (DateTime)ResultSet["hiredate"];
+                string TeacherHireDate = Hiredate.ToLongDateString();
                 double TeacherSalary = Convert.ToDouble(ResultSet["salary"]);
 
                 // Creating a NewTeacher object of type Teacher to store the information of one teacher at a time.
