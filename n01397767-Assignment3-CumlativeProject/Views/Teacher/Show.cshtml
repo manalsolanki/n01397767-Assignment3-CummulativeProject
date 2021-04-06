@@ -1,0 +1,14 @@
+﻿@model n01397767_Assignment3_CumlativeProject.Models.Teacher
+@{
+    ViewBag.Title = "Show";
+}
+
+
+<h2>Each Individual Teacher</h2>
+<h4>@Model.TeacherFname @Model.TeacherLname</h4>
+<p>Salary : @Model.TeacherSalary</p>
+<h4>Courses Assigned</h4>
+@foreach (var course in Model.TeacherCourse)
+{
+    <p>@course</p>
+}
