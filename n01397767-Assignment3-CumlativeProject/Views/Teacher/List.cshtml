@@ -4,13 +4,16 @@
     ViewBag.Title = "List";
 }
 
-
 <h2>List of all the Teachers.</h2>
+@* A form for getting the search Id *@
 <form action="/Teacher/List" method="get">
-    <input type="text"name="SearchKey"/>
-    <input type="submit" value="Search"/>
+    <input type="text" name="SearchKey" />
+    <input type="submit" value="Search" />
 </form>
+<span>@Model.Count() Results Found</span>
 
+
+@*Iterates through each object in the models *@
 @foreach (var teacher in Model)
 {
     <div>

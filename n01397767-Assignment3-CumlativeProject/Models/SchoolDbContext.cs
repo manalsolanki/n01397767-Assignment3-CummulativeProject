@@ -5,22 +5,23 @@ using System.Web;
 using MySql.Data.MySqlClient;
 namespace n01397767_Assignment3_CumlativeProject.Models
 {
+    // This class stores the information about School Database.
     public class SchoolDbContext
     {
-        //These properties needs to be private and read only.get to retrive the information.
+        //These properties needs to be private and read only so we declare as private.It
+        // contains the detail of DB.
         private static string User { get { return "root"; } }
         private static string Password { get { return "root"; } }
         private static string Database { get { return "school"; } }
         private static string Server { get { return "localhost"; } }
         private static string Port { get { return "3306"; } }
 
-        //ConnectionString is a series of credentials used to connect to the database.Inorder to get the connection
+      // To achieve the connection between the Database , this string is key to that.It contains all the necessary information.
         protected static string ConnectionString
         {
             get
             {
-                //convert zero datetime is a db connection setting which returns NULL if the date is 0000-00-00
-                //this can allow C# to have an easier interpretation of the date (no date instead of 0 BCE)
+                //As 0000-00-00 date returns null and error may occue so by declaring true we are preventing that error.
 
                 return "server = " + Server
                     + "; user = " + User
@@ -31,19 +32,19 @@ namespace n01397767_Assignment3_CumlativeProject.Models
 
             }
         }
-        //Method is public and can be used by any block.
+  
         /// <summary>
-        /// Returns a connection to the blog database.Simply instansitantion of class(talking about specific TB)
+        /// It returns a connection of School Database and this method can be used globally.
+        /// It is just simple instantisation of the classes to create an object.
         /// </summary>
         /// <example>
         /// private SchoolDbContext School = new SchoolDbContext();
-        /// MySqlConnection Conn = School.AccessDatabase();
+        /// MySqlConnection Connection = School.AccessDatabase();
         /// </example>
-        /// <returns>A MySqlConnection Object</returns>
+        /// <returns>MySqlConnection Object</returns>
         public MySqlConnection AccessDatabase()
         {
-            //We are instantiating the MySqlConnection Class to create an object
-            //the object is a specific connection to our blog database on port 3307 of localhost
+           // This object refers connection with Database on localhost port 3306.
             return new MySqlConnection(ConnectionString);
         }
     }

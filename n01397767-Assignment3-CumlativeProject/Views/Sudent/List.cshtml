@@ -1,0 +1,10 @@
+﻿@model IEnumerable<n01397767_Assignment3_CumlativeProject.Models.Student>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Students </h2>
+@foreach( var Student in Model)
+{
+    <h3>@Student.StudentFname @Student.StudentLname @Student.StudentId</h3>    
+}

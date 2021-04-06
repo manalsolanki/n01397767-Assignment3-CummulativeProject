@@ -4,11 +4,14 @@
 }
 
 
-<h2>Each Individual Teacher</h2>
-<h4>@Model.TeacherFname @Model.TeacherLname</h4>
+
+<h2>@Model.TeacherFname @Model.TeacherLname</h2>
 <p>Salary : @Model.TeacherSalary</p>
-<h4>Courses Assigned</h4>
+<p>Joining Date : @Model.TeacherHireDate</p>
+<h3 style="
+    color:brown">Courses Assigned :</h3>
 @foreach (var course in Model.TeacherCourse)
 {
     <p>@course</p>
 }
+<a style="color:mediumvioletred" href="/Teacher/List">Go back</a>
