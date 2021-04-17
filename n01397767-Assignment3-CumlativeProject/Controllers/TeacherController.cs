@@ -52,5 +52,57 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
             //Returns the evalute result.
             return View(newTeacher);
         }
+
+        //GET : 
+        public ActionResult DeleteConfirm(int id)
+        {
+            //Creates a instance of Controller.
+            TeacherDataController controller = new TeacherDataController();
+
+            // Calls the find teacher method of the conrtoller.
+            Teacher newTeacher = controller.FindTeacher(id);
+
+            //Returns the evalute result.
+            return View(newTeacher);
+        }
+
+        //Post : /Teacher/Delete/{id}
+        public ActionResult Delete(int id)
+        {
+            //Creates a instance of Controller.
+            TeacherDataController controller = new TeacherDataController();
+
+            // Calls the delete teacher method of the conrtoller.
+            controller.deleteTeacher(id);
+            return RedirectToAction("List");
+        }
+
+        //Get :/Teacher/new
+
+        public ActionResult New ()
+        {
+            return View();
+        }
+
+        //POST :/Teacher/Create
+
+        public ActionResult Create(string TeacherFname, string TeacherLname,string EmployeeNumber, string TeacherHireDate, Double TeacherSalary)
+        {
+            Debug.WriteLine(TeacherFname);
+            Debug.WriteLine(TeacherLname);
+            Debug.WriteLine(TeacherHireDate);
+            Debug.WriteLine(TeacherSalary);
+            Teacher NewTeacher = new Teacher();
+            NewTeacher.TeacherFname = TeacherFname;
+            NewTeacher.TeacherLname = TeacherLname;
+            NewTeacher.TeacherHireDate = TeacherHireDate;
+            NewTeacher.TeacherSalary = TeacherSalary;
+            NewTeacher.TeacherSalary = TeacherSalary;
+            NewTeacher.EmployeeNumber = EmployeeNumber;
+
+            TeacherDataController controller = new TeacherDataController();
+            controller.AddTeacher(NewTeacher);
+            return RedirectToAction("List");
+        }
     }
 }

@@ -3,7 +3,20 @@
 @{
     ViewBag.Title = "List";
 }
+<style>
+    .navlink {
+        display: flex;
+        justify-content: space-between;
+        padding: 2em;
+    }
 
+    .navlink a {
+            font-size: 1.5em;
+        }
+</style>
+<nav class="navlink">
+    <a href="/Teacher/New"><i class="fas fa-plus"></i> Add Teacher </a>
+</nav>
 <h2>List of all the Teachers.</h2>
 @* A form for getting the search Id *@
 <form action="/Teacher/List" method="get">

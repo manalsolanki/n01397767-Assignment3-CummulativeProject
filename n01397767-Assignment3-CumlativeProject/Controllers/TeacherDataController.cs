@@ -160,5 +160,58 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
             // Returns an object of Teacher with all the information.
             return NewTeacher;
         }
+
+
+        [HttpPost]
+        public void deleteTeacher(int id)
+        {
+            //Instance of a connection using MySQL object.
+            MySqlConnection Connection = School.AccessDatabase();
+
+            //Establishes connection between web server and the database
+            Connection.Open();
+
+            //This helps to create a new command of SQL.
+            MySqlCommand cmd = Connection.CreateCommand();
+
+            //SQL QUERY to delete by Id
+            cmd.CommandText = "Delete from teachers where teacherid=@id";
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
+            //Important to close the connection between webserver and Database.
+            Connection.Close();
+        }
+
+        [HttpPost]
+        public void AddTeacher([FromBody]Teacher newTeacher)
+        {
+            //Instance of a connection using MySQL object.
+            MySqlConnection Connection = School.AccessDatabase();
+
+            //Establishes connection between web server and the database
+            Connection.Open();
+
+            //This helps to create a new command of SQL.
+            MySqlCommand cmd = Connection.CreateCommand();
+
+            //SQL QUERY to delete by Id
+            cmd.CommandText = "INSERT INTO teachers " +
+                "(teacherfname, teacherlname, employeenumber, hiredate, salary) " +
+                "VALUES (@fname, @lname, @employeenumber,@date,@salary);";
+            cmd.Parameters.AddWithValue("@fname", newTeacher.TeacherFname);
+            cmd.Parameters.AddWithValue("@lname", newTeacher.TeacherLname);
+            cmd.Parameters.AddWithValue("@employeenumber", newTeacher.EmployeeNumber);
+            cmd.Parameters.AddWithValue("@date",Convert.ToDateTime(newTeacher.TeacherHireDate));
+            cmd.Parameters.AddWithValue("@salary", newTeacher.TeacherSalary);
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
+            //Important to close the connection between webserver and Database.
+            Connection.Close();
+        }
     }
 }

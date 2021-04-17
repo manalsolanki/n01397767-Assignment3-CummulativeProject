@@ -1,0 +1,45 @@
+﻿@model n01397767_Assignment3_CumlativeProject.Models.Teacher
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+<style>
+    .navlink {
+        display: flex;
+        justify-content: space-between;
+        padding: 2em;
+    }
+
+    .navlink a {
+            font-size: 1.5em;
+    }
+
+    .deleteButton{
+        border:2px solid red;
+        background-color:white;
+        border-radius:5px;
+        padding:0.5em;
+        color:red;
+        display:block;
+        margin: 0 auto;
+    }
+    .deleteButton:hover {
+        background-color:red;
+        color:white;
+    }
+
+    p i {
+        color: red;
+    }
+</style>
+<nav class="navlink">
+    <a href="/Teacher/Show/@Model.TeacherId">Cancel</a>
+</nav>
+
+<h3>Are you sure you want to delete @Model.TeacherFname @Model.TeacherLname ?</h3>
+
+<p><i class="fas fa-exclamation-circle"></i> This action cannot be undone.</p>
+<form action="/Teacher/Delete/@Model.TeacherId" method="post">
+    <button class="deleteButton" href="">Confirm Delete</button>
+</form>
+
+
