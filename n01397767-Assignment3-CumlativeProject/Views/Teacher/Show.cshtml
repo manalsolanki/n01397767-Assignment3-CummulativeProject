@@ -2,23 +2,23 @@
 @{
     ViewBag.Title = "Show";
 }
-
 <style>
     .navlink {
-        display:flex;
-        justify-content:space-between;
+        display: flex;
+        justify-content: space-between;
         padding: 2em;
     }
-    .navlink a{
-        font-size:1.5em;
-    }
-    .deleteButton:hover{
-        color:red;
+
+        .navlink a {
+            font-size: 1.5em;
+        }
+    .show-deleteButton:hover {
+        color: red;
     }
 </style>
 <nav class="navlink">
     <a href="/Teacher/List">Go back</a>
-    <a class="deleteButton" href="/Teacher/DeleteConfirm/@Model.TeacherId"><i class="fa fa-trash" aria-hidden="true"></i></a>
+    <a class="show-deleteButton" href="/Teacher/DeleteConfirm/@Model.TeacherId"><i class="fa fa-trash" aria-hidden="true"></i></a>
 
 </nav>
 

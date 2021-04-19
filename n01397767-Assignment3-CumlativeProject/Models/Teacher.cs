@@ -15,6 +15,7 @@ namespace n01397767_Assignment3_CumlativeProject.Models
         public string TeacherHireDate;
         public double TeacherSalary;
         public List<String> TeacherCourse = new List<string>();
+        public string inputError = "i" ;
 
         public Teacher() { }
     }

@@ -14,6 +14,8 @@ namespace n01397767_Assignment3_CumlativeProject
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+            config.EnableCors();
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{action}/{id}",

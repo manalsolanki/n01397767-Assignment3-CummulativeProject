@@ -7,6 +7,7 @@ using System.Web.Http;
 using MySql.Data.MySqlClient;
 using n01397767_Assignment3_CumlativeProject.Models;
 using System.Diagnostics;
+using System.Web.Http.Cors;
 
 namespace n01397767_Assignment3_CumlativeProject.Controllers
 {
@@ -175,6 +176,10 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
             MySqlCommand cmd = Connection.CreateCommand();
 
             //SQL QUERY to delete by Id
+            // I have updated the Database so in the Classes where teacherid is foreign key
+            // have updated the restriction to ON DELETE CASCADE so whenever a teacher is deleted automatically classes are 
+            // are also remove and same for studentvsclass table.
+            //By this we can maintain data-integrity.
             cmd.CommandText = "Delete from teachers where teacherid=@id";
             cmd.Parameters.AddWithValue("@id", id);
             cmd.Prepare();

@@ -93,16 +93,33 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
             Debug.WriteLine(TeacherHireDate);
             Debug.WriteLine(TeacherSalary);
             Teacher NewTeacher = new Teacher();
-            NewTeacher.TeacherFname = TeacherFname;
-            NewTeacher.TeacherLname = TeacherLname;
-            NewTeacher.TeacherHireDate = TeacherHireDate;
-            NewTeacher.TeacherSalary = TeacherSalary;
-            NewTeacher.TeacherSalary = TeacherSalary;
-            NewTeacher.EmployeeNumber = EmployeeNumber;
+            if (TeacherFname == "" || TeacherLname == "" || EmployeeNumber == "" || TeacherHireDate == "")
+            {
+                return RedirectToAction("InvalidData");
+            }
+            else
+            {
+                NewTeacher.TeacherFname = TeacherFname;
+                NewTeacher.TeacherLname = TeacherLname;
+                NewTeacher.TeacherHireDate = TeacherHireDate;
+                NewTeacher.TeacherSalary = TeacherSalary;
+                NewTeacher.TeacherSalary = TeacherSalary;
+                NewTeacher.EmployeeNumber = EmployeeNumber;
 
-            TeacherDataController controller = new TeacherDataController();
-            controller.AddTeacher(NewTeacher);
-            return RedirectToAction("List");
+                TeacherDataController controller = new TeacherDataController();
+                controller.AddTeacher(NewTeacher);
+
+                return RedirectToAction("List");
+
+            }
+        }
+
+        //GET : /Teacher/Invalid
+        public ActionResult InvalidData()
+        {
+            return View();
         }
     }
+    
+
 }

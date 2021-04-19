@@ -3,43 +3,95 @@
     ViewBag.Title = "New";
 }
 <style>
-    label{
-        display:block;
+    .newteacher-label {
+        display: block;
     }
-    .form-elements{
-        padding-top:1em;
+
+    .form-elements {
+        padding-top: 1em;
     }
-    input[type=submit]{
-        margin-top:1em;
-        border:1px solid lawngreen;
-        border-radius:5px;
-        padding:0.5em;
-        background-color:lawngreen;
-        color:white;
-        text-transform:capitalize;
+
+    .submit-button {
+        margin-top: 1em;
+        border: 1px solid lawngreen;
+        border-radius: 5px;
+        padding: 0.5em;
+        background-color: lawngreen;
+        color: white;
+        text-transform: capitalize;
+    }
+    .input-error{
+        border: 2px solid red;
     }
 </style>
 <h2>Add a Teacher</h2>
-<form method="post" action="/Teacher/Create">
+<form  name="newTeacher" action="/Teacher/Create" onsubmit="return processForm();">
     <div class="form-elements">
-        <label for="TeacheFname">First Name</label>
+        <p id="errorMessage"></p>
+    </div>
+    <div class="form-elements">
+        <label class="newteacher-label" for="TeacheFname">First Name</label>
         <input type="text" name="TeacherFname" id="TeacherFname" />
     </div>
     <div class="form-elements">
-        <label for="TeacherLname">Last Name</label>
+        <label class="newteacher-label" for="TeacherLname">Last Name</label>
         <input type="text" name="TeacherLname" id="TeacherLname" />
     </div>
     <div class="form-elements">
-        <label for="EmployeeNumber">Employee Number</label>
+        <label class="newteacher-label" for="EmployeeNumber">Employee Number</label>
         <input type="text" name="EmployeeNumber" id="EmployeeNumber" />
+        <p>It should be 4 digit and start with T(For eg, t456)</p>
     </div>
     <div class="form-elements">
-        <label for="TeacherHireDate">Hiring Date</label>
+        <label  class="newteacher-label" for="TeacherHireDate">Hiring Date</label>
         <input type="datetime-local" name="TeacherHireDate" id="TeacherHireDate" />
     </div>
     <div class="form-elements">
-        <label for="TeacherSalary">Teacher Salary</label>
+        <label class="newteacher-label" for="TeacherSalary">Teacher Salary</label>
         <input type="text" name="TeacherSalary" id="TeacherSalary" />
     </div>
-    <input type="submit" value="Submit" />
+    <input class="submit-button" type="submit" value="Submit" />
 </form>
+<script>
+    function processForm() {
+        var expr = /^(t|T)([0-9]{3})$/;
+        var errorMessage = document.getElementById("errorMessage");
+        fname = document.getElementById('TeacherFname').value;
+        lname = document.getElementById('TeacherLname').value;
+        employeenumber = document.getElementById('EmployeeNumber').value;
+        hiredate = document.getElementById('TeacherHireDate').value;
+        salary = document.getElementById('TeacherSalary').value;
+        if (!(fname)) {
+            errorMessage.innerHTML = "Please enter first name.";
+            return false;
+        }
+        if (!(lname)) {
+            errorMessage.innerHTML = "Please enter last name.";
+            return false;
+        }
+        if (!(expr.test(employeenumber)))
+        {
+            errorMessage.innerHTML = "Please enter valid Employee Number";
+            return false;
+        }
+         if (!(employeenumber)) {
+            errorMessage.innerHTML = "Please enter Employee Number";
+            return false;
+        }
+         if (!(hiredate)) {
+            errorMessage.innerHTML = "Please enter Hiring Date";
+            return false;
+        }
+         if (!(salary)) {
+            errorMessage.innerHTML = "Please enter salary";
+            return false;
+        }
+        if (isNaN(salary)) {
+            errorMessage.innerHTML = "Please enter valid salary";
+            return false;
+        }
+      
+    }
+    
+
+</script>

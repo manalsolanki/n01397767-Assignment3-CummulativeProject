@@ -1,3 +1,50 @@
-﻿body {
-    color:red;
+﻿.navlink {
+    display: flex;
+    justify-content: space-between;
+    padding: 2em;
+}
+
+.navlink a {
+        font-size: 1.5em;
+}
+
+.deleteButton {
+    border: 2px solid red;
+    background-color: white;
+    border-radius: 5px;
+    padding: 0.5em;
+    color: red;
+    display: block;
+    margin: 0 auto;
+}
+
+    .deleteButton:hover {
+        background-color: red;
+        color: white;
+    }
+
+.fa-exclamation-circle {
+    color: red;
+}
+
+.show-deleteButton:hover {
+    color: red;
+}
+
+.newteacher-label {
+    display: block;
+}
+
+.form-elements {
+    padding-top: 1em;
+}
+
+.submit-button {
+    margin-top: 1em;
+    border: 1px solid lawngreen;
+    border-radius: 5px;
+    padding: 0.5em;
+    background-color: lawngreen;
+    color: white;
+    text-transform: capitalize;
 }
