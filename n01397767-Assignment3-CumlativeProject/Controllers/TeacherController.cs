@@ -53,7 +53,12 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
             return View(newTeacher);
         }
 
-        //GET : 
+        //GET : Teacher/DeleteConfirm/{id}
+        /// <summary>
+        /// This method helps to display a confirmation page before deleting.
+        /// </summary>
+        /// <param name="id">The id of the teacher.</param>
+        /// <returns>A view with a particular teacher information.</returns>
         public ActionResult DeleteConfirm(int id)
         {
             //Creates a instance of Controller.
@@ -65,7 +70,11 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
             //Returns the evalute result.
             return View(newTeacher);
         }
-
+        /// <summary>
+        /// This methods helps to delete the teacher.
+        /// </summary>
+        /// <param name="id">Specifies which teacher to be deleted</param>
+        /// <returns>If deletes succesfully, then redirets to the list page.</returns>
         //Post : /Teacher/Delete/{id}
         public ActionResult Delete(int id)
         {
@@ -74,25 +83,41 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
 
             // Calls the delete teacher method of the conrtoller.
             controller.deleteTeacher(id);
+
+            //Redirects to the list page.
             return RedirectToAction("List");
         }
 
         //Get :/Teacher/new
-
+        /// <summary>
+        /// This is use to diplay the form for adding a teacher.
+        /// </summary>
+        /// <returns>Just a view.</returns>
         public ActionResult New ()
         {
             return View();
         }
 
         //POST :/Teacher/Create
-
+        /// <summary>
+        /// This action is called when we submit the form for adding a new teacher.
+        /// </summary>
+        /// <param name="TeacherFname">Teacher First Name</param>
+        /// <param name="TeacherLname">Teacher Last Name</param>
+        /// <param name="EmployeeNumber">Employee Number</param>
+        /// <param name="TeacherHireDate">The Hiring date</param>
+        /// <param name="TeacherSalary">Salary of the teacher</param>
+        /// <returns></returns>
         public ActionResult Create(string TeacherFname, string TeacherLname,string EmployeeNumber, string TeacherHireDate, Double TeacherSalary)
         {
             Debug.WriteLine(TeacherFname);
             Debug.WriteLine(TeacherLname);
             Debug.WriteLine(TeacherHireDate);
             Debug.WriteLine(TeacherSalary);
+            //Creates a model for teacher object.
             Teacher NewTeacher = new Teacher();
+            //This is a server side validation As this would be the first site 
+            // where this information will used by the server.
             if (TeacherFname == "" || TeacherLname == "" || EmployeeNumber == "" || TeacherHireDate == "")
             {
                 return RedirectToAction("InvalidData");
@@ -105,7 +130,7 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
                 NewTeacher.TeacherSalary = TeacherSalary;
                 NewTeacher.TeacherSalary = TeacherSalary;
                 NewTeacher.EmployeeNumber = EmployeeNumber;
-
+                // Calling Add teacher controller.
                 TeacherDataController controller = new TeacherDataController();
                 controller.AddTeacher(NewTeacher);
 
@@ -113,7 +138,10 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
 
             }
         }
-
+        /// <summary>
+        /// When the server validation occurs during submit the form this page is rendered.
+        /// </summary>
+        /// <returns>A view </returns>
         //GET : /Teacher/Invalid
         public ActionResult InvalidData()
         {

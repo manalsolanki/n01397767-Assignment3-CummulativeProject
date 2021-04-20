@@ -162,7 +162,11 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
             return NewTeacher;
         }
 
-
+        /// <summary>
+        /// This method helps to delete the teacher by id. 
+        /// </summary>
+        /// <param name="id">This is the primary key</param>
+        /// <return>It doesnot return anything as the main motive is to delete.</return>
         [HttpPost]
         public void deleteTeacher(int id)
         {
@@ -189,7 +193,11 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
             //Important to close the connection between webserver and Database.
             Connection.Close();
         }
-
+        /// <summary>
+        /// This Class helps to add a new teacher to the school database .
+        /// </summary>
+        /// <param name="newTeacher">Its a teacher model with all the necssary information.</param>
+        /// <returns>As there is nothing to return, it is void</returns>
         [HttpPost]
         public void AddTeacher([FromBody]Teacher newTeacher)
         {
@@ -202,7 +210,7 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
             //This helps to create a new command of SQL.
             MySqlCommand cmd = Connection.CreateCommand();
 
-            //SQL QUERY to delete by Id
+            //SQL QUERY to Insert 
             cmd.CommandText = "INSERT INTO teachers " +
                 "(teacherfname, teacherlname, employeenumber, hiredate, salary) " +
                 "VALUES (@fname, @lname, @employeenumber,@date,@salary);";
