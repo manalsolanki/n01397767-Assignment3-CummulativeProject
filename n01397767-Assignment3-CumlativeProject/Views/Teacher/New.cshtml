@@ -3,32 +3,7 @@
     ViewBag.Title = "New";
 }
 @*This is use to display the HTML form for adding the new teacher.
-    Have used the style block here , beacuse I am not able to render the CSS from content.
-    So for that I have booked an appointment with you.
     *@
-<style>
-
-    .newteacher-label {
-        display: block;
-    }
-
-    .form-elements {
-        padding-top: 1em;
-    }
-
-    .submit-button {
-        margin-top: 1em;
-        border: 1px solid lawngreen;
-        border-radius: 5px;
-        padding: 0.5em;
-        background-color: lawngreen;
-        color: white;
-        text-transform: capitalize;
-    }
-    .input-error{
-        border: 2px solid red;
-    }
-</style>
 <h2>Add a Teacher</h2>
 <form  name="newTeacher" action="/Teacher/Create" onsubmit="return processForm();">
     <div class="form-elements">

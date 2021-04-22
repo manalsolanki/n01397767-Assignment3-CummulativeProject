@@ -17,7 +17,41 @@ textarea {
 }
 
 
-.navlink{
-    text-align:right;
-    padding:1em;
+.navlink {
+    display: flex;
+    justify-content: space-between;
+    padding: 2em;
 }
+
+    .navlink a {
+        font-size: 1.5em;
+    }
+
+.show-deleteButton:hover {
+    color: red;
+}
+.newteacher-label {
+    display: block;
+}
+
+.form-elements {
+    padding-top: 1em;
+}
+
+.submit-button {
+    margin-top: 1em;
+    border: 1px solid lawngreen;
+    border-radius: 5px;
+    padding: 0.5em;
+    background-color: lawngreen;
+    color: white;
+    text-transform: capitalize;
+}
+#errorMessage{
+    color:red;
+}
+
+.input-error {
+    border: 2px solid red;
+}
+
