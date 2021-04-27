@@ -120,6 +120,7 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
                 int TeacherId = (int)ResultSet["teacherid"];
                 string TeacherfName = (string)ResultSet["teacherfname"];
                 string TeacherlName = (string)ResultSet["teacherlname"];
+                string EmployeeNumber = (string)ResultSet["employeenumber"];
                 DateTime TeacherHireDate =(DateTime) ResultSet["hiredate"];
                 double TeacherSalary = Convert.ToDouble(ResultSet["salary"]);
                 string date = TeacherHireDate.ToLongDateString();
@@ -129,6 +130,7 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
                 NewTeacher.TeacherLname = TeacherlName;
                 NewTeacher.TeacherHireDate = date;
                 NewTeacher.TeacherSalary = TeacherSalary;
+                NewTeacher.EmployeeNumber = EmployeeNumber;
             }
 
             // As we want to execute another query , we need to close the first one.
@@ -225,6 +227,35 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
 
             //Important to close the connection between webserver and Database.
             Connection.Close();
+        }
+        [HttpPost]
+        public void UpdateTeacher (int id , [FromBody]Teacher teacherInfo)
+        {
+            //Instance of a connection using MySQL object.
+            MySqlConnection Connection = School.AccessDatabase();
+
+            //Establishes connection between web server and the database
+            Connection.Open();
+
+            //This helps to create a new command of SQL.
+            MySqlCommand cmd = Connection.CreateCommand();
+
+            //SQL QUERY to Insert 
+            cmd.CommandText = "UPDATE teachers set " +
+                "teacherfname = @fname , teacherlname = @lname, employeenumber = @employeenumber, salary = @salary " +
+                "where teacherid = @id";
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@fname", teacherInfo.TeacherFname);
+            cmd.Parameters.AddWithValue("@lname", teacherInfo.TeacherLname);
+            cmd.Parameters.AddWithValue("@employeenumber", teacherInfo.EmployeeNumber);
+            cmd.Parameters.AddWithValue("@salary", teacherInfo.TeacherSalary);
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
+            //Important to close the connection between webserver and Database.
+            Connection.Close();
+
         }
     }
 }

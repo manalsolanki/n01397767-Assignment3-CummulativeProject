@@ -25,6 +25,7 @@ textarea {
 
     .navlink a {
         font-size: 1.5em;
+        margin-right:15px;
     }
 
 .show-deleteButton:hover {

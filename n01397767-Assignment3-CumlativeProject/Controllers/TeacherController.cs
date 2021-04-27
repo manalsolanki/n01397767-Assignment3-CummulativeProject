@@ -147,7 +147,42 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
         {
             return View();
         }
-    }
-    
+        //GET :/Teacher/Update/{id}
+        public ActionResult Update(int id)
+        {
+            //Creates a instance of Controller.
+            TeacherDataController controller = new TeacherDataController();
 
+            // Calls the find teacher method of the conrtoller.
+            Teacher selectedTeacher = controller.FindTeacher(id);
+
+            //Returns the evalute result.
+            return View(selectedTeacher);
+        }
+
+
+        //POST : /Teacher/Update{id}
+        [HttpPost]
+        public ActionResult Update (int id, string TeacherFname, string TeacherLname, string EmployeeNumber, Double TeacherSalary)
+        {
+            Teacher TeacherInfo = new Teacher();
+            //This is a server side validation As this would be the first site 
+            // where this information will used by the server.
+            if (TeacherFname == "" || TeacherLname == "" || EmployeeNumber == "")
+            {
+                return RedirectToAction("InvalidData");
+            }
+            else
+            {
+                TeacherInfo.TeacherId = id;
+                TeacherInfo.TeacherFname = TeacherFname;
+                TeacherInfo.TeacherLname = TeacherLname;
+                TeacherInfo.TeacherSalary = TeacherSalary;
+                TeacherInfo.EmployeeNumber = EmployeeNumber;
+                // Calling Update teacher controller.
+                TeacherDataController controller = new TeacherDataController();
+                controller.UpdateTeacher(id, TeacherInfo);
+            }       return RedirectToAction("/Show/" + id);
+        }
+    }
 }

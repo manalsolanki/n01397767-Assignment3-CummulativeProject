@@ -1,34 +1,32 @@
-﻿
+﻿@model n01397767_Assignment3_CumlativeProject.Models.Teacher
 @{
-    ViewBag.Title = "New";
+    ViewBag.Title = "Update";
 }
-@*This is use to display the HTML form for adding the new teacher.
-    *@
-<h2>Add a Teacher</h2>
-<form  name="newTeacher" action="/Teacher/Create" method="post" onsubmit="return processForm();">
+<nav class="navlink">
+    <a href="/Teacher/Show/@Model.TeacherId">Go Back</a>
+</nav>
+<h2>Update a Teacher</h2>
+<form name="newTeacher" method="post" action="/Teacher/Update/@Model.TeacherId" onsubmit="return processForm();">
     <div class="form-elements">
         <p id="errorMessage"></p>
     </div>
     <div class="form-elements">
         <label class="newteacher-label" for="TeacheFname">First Name</label>
-        <input type="text" name="TeacherFname" id="TeacherFname" />
+        <input type="text" name="TeacherFname" id="TeacherFname" value="@Model.TeacherFname" />
     </div>
     <div class="form-elements">
         <label class="newteacher-label" for="TeacherLname">Last Name</label>
-        <input type="text" name="TeacherLname" id="TeacherLname" />
+        <input type="text" name="TeacherLname" id="TeacherLname" value="@Model.TeacherLname" />
     </div>
     <div class="form-elements">
         <label class="newteacher-label" for="EmployeeNumber">Employee Number</label>
-        <input type="text" name="EmployeeNumber" id="EmployeeNumber" />
+        <input type="text" name="EmployeeNumber" id="EmployeeNumber" value="@Model.EmployeeNumber" />
         <p>It should be 4 digit and start with T(For eg, t456)</p>
     </div>
-    <div class="form-elements">
-        <label  class="newteacher-label" for="TeacherHireDate">Hiring Date</label>
-        <input type="datetime-local" name="TeacherHireDate" id="TeacherHireDate" />
-    </div>
+    
     <div class="form-elements">
         <label class="newteacher-label" for="TeacherSalary">Teacher Salary</label>
-        <input type="text" name="TeacherSalary" id="TeacherSalary" />
+        <input type="text" name="TeacherSalary" id="TeacherSalary" value="@Model.TeacherSalary"/>
     </div>
     <input class="submit-button" type="submit" value="Submit" />
 </form>
@@ -42,7 +40,6 @@
         fname = document.getElementById('TeacherFname').value;
         lname = document.getElementById('TeacherLname').value;
         employeenumber = document.getElementById('EmployeeNumber').value;
-        hiredate = document.getElementById('TeacherHireDate').value;
         salary = document.getElementById('TeacherSalary').value;
         if (!(fname)) {
             errorMessage.innerHTML = "Please enter first name.";
@@ -61,10 +58,6 @@
             errorMessage.innerHTML = "Please enter Employee Number";
             return false;
         }
-         if (!(hiredate)) {
-            errorMessage.innerHTML = "Please enter Hiring Date";
-            return false;
-        }
          if (!(salary)) {
             errorMessage.innerHTML = "Please enter salary";
             return false;
@@ -73,8 +66,9 @@
             errorMessage.innerHTML = "Please enter valid salary";
             return false;
         }
-      
+
     }
-    
+
 
 </script>
+
