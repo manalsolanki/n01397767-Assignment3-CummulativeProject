@@ -70,6 +70,8 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
             //Returns the evalute result.
             return View(newTeacher);
         }
+
+
         /// <summary>
         /// This methods helps to delete the teacher.
         /// </summary>
@@ -87,6 +89,8 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
             //Redirects to the list page.
             return RedirectToAction("List");
         }
+
+
 
         //Get :/Teacher/new
         /// <summary>
@@ -147,6 +151,14 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// This method is called when we want to update some informaton of the teacher.
+        /// Here the hiring date and employee Number wont change .
+        /// </summary>
+        /// <param name="id">The id defines whic teacher details need to be updated.</param>
+        /// <returns>A detail page of teacher.</returns>
+
         //GET :/Teacher/Update/{id}
         public ActionResult Update(int id)
         {
@@ -163,12 +175,12 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
 
         //POST : /Teacher/Update{id}
         [HttpPost]
-        public ActionResult Update (int id, string TeacherFname, string TeacherLname, string EmployeeNumber, Double TeacherSalary)
+        public ActionResult Update (int id, string TeacherFname, string TeacherLname, Double TeacherSalary)
         {
             Teacher TeacherInfo = new Teacher();
             //This is a server side validation As this would be the first site 
             // where this information will used by the server.
-            if (TeacherFname == "" || TeacherLname == "" || EmployeeNumber == "")
+            if (TeacherFname == "" || TeacherLname == "" )
             {
                 return RedirectToAction("InvalidData");
             }
@@ -178,11 +190,11 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
                 TeacherInfo.TeacherFname = TeacherFname;
                 TeacherInfo.TeacherLname = TeacherLname;
                 TeacherInfo.TeacherSalary = TeacherSalary;
-                TeacherInfo.EmployeeNumber = EmployeeNumber;
                 // Calling Update teacher controller.
                 TeacherDataController controller = new TeacherDataController();
                 controller.UpdateTeacher(id, TeacherInfo);
-            }       return RedirectToAction("/Show/" + id);
+                return RedirectToAction("/Show/" + id);
+            }
         }
     }
 }

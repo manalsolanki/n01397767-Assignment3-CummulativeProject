@@ -163,7 +163,7 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
             // Returns an object of Teacher with all the information.
             return NewTeacher;
         }
-
+        // This method is called when we want to delete the teacher.
         /// <summary>
         /// This method helps to delete the teacher by id. 
         /// </summary>
@@ -195,8 +195,11 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
             //Important to close the connection between webserver and Database.
             Connection.Close();
         }
+
+
+
         /// <summary>
-        /// This Class helps to add a new teacher to the school database .
+        /// This Methods helps to add a new teacher to the school database . It takes  a teacher model with all the information.
         /// </summary>
         /// <param name="newTeacher">Its a teacher model with all the necssary information.</param>
         /// <returns>As there is nothing to return, it is void</returns>
@@ -228,6 +231,14 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
             //Important to close the connection between webserver and Database.
             Connection.Close();
         }
+
+
+
+        /// <summary>
+        /// This method is used when we want o update the information about a teacher.
+        /// </summary>
+        /// <param name="id">The id of the teacher which is to be updated.</param>
+        /// <param name="teacherInfo">Its a information of the teacher.</param>
         [HttpPost]
         public void UpdateTeacher (int id , [FromBody]Teacher teacherInfo)
         {
@@ -240,7 +251,7 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
             //This helps to create a new command of SQL.
             MySqlCommand cmd = Connection.CreateCommand();
 
-            //SQL QUERY to Insert 
+            //SQL QUERY to Update by Id. 
             cmd.CommandText = "UPDATE teachers set " +
                 "teacherfname = @fname , teacherlname = @lname, employeenumber = @employeenumber, salary = @salary " +
                 "where teacherid = @id";

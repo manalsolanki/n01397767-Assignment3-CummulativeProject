@@ -20,26 +20,27 @@
     </div>
     <div class="form-elements">
         <label class="newteacher-label" for="EmployeeNumber">Employee Number</label>
-        <input type="text" name="EmployeeNumber" id="EmployeeNumber" value="@Model.EmployeeNumber" />
-        <p>It should be 4 digit and start with T(For eg, t456)</p>
+        <p>@Model.EmployeeNumber</p>
     </div>
-    
+    <div class="form-elements">
+        <label class="newteacher-label" for="Hiring Date">Hiring Date</label>
+        <p>@Model.TeacherHireDate</p>
+    </div>
+
     <div class="form-elements">
         <label class="newteacher-label" for="TeacherSalary">Teacher Salary</label>
-        <input type="text" name="TeacherSalary" id="TeacherSalary" value="@Model.TeacherSalary"/>
+        <input type="text" name="TeacherSalary" id="TeacherSalary" value="@Model.TeacherSalary" />
     </div>
     <input class="submit-button" type="submit" value="Submit" />
 </form>
 <script>
     @* On submitting the form this fucntion is called.
         It checks wether all the fields have value or not.
-        And also checks the employee number with a regular expression.*@
+        *@
     function processForm() {
-        var expr = /^(t|T)([0-9]{3})$/;
         var errorMessage = document.getElementById("errorMessage");
         fname = document.getElementById('TeacherFname').value;
         lname = document.getElementById('TeacherLname').value;
-        employeenumber = document.getElementById('EmployeeNumber').value;
         salary = document.getElementById('TeacherSalary').value;
         if (!(fname)) {
             errorMessage.innerHTML = "Please enter first name.";
@@ -49,15 +50,7 @@
             errorMessage.innerHTML = "Please enter last name.";
             return false;
         }
-        if (!(expr.test(employeenumber)))
-        {
-            errorMessage.innerHTML = "Please enter valid Employee Number";
-            return false;
-        }
-         if (!(employeenumber)) {
-            errorMessage.innerHTML = "Please enter Employee Number";
-            return false;
-        }
+      
          if (!(salary)) {
             errorMessage.innerHTML = "Please enter salary";
             return false;
