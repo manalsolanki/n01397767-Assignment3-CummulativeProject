@@ -239,7 +239,16 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
         /// </summary>
         /// <param name="id">The id of the teacher which is to be updated.</param>
         /// <param name="teacherInfo">Its a information of the teacher.</param>
-        [HttpPost]
+        /// <example>
+        /// POST api/TeacherData/UpdateTeacher/18
+        /// {
+	    ///     "TeacherFname" : "Manal",
+	    ///     "TeacherLname" : "Solanki",
+	    ///     "TeacherSalary" : 1000
+        ///  }
+
+    /// </example>
+    [HttpPost]
         public void UpdateTeacher (int id , [FromBody]Teacher teacherInfo)
         {
             //Instance of a connection using MySQL object.
@@ -253,12 +262,11 @@ namespace n01397767_Assignment3_CumlativeProject.Controllers
 
             //SQL QUERY to Update by Id. 
             cmd.CommandText = "UPDATE teachers set " +
-                "teacherfname = @fname , teacherlname = @lname, employeenumber = @employeenumber, salary = @salary " +
+                "teacherfname = @fname , teacherlname = @lname, salary = @salary " +
                 "where teacherid = @id";
             cmd.Parameters.AddWithValue("@id", id);
             cmd.Parameters.AddWithValue("@fname", teacherInfo.TeacherFname);
             cmd.Parameters.AddWithValue("@lname", teacherInfo.TeacherLname);
-            cmd.Parameters.AddWithValue("@employeenumber", teacherInfo.EmployeeNumber);
             cmd.Parameters.AddWithValue("@salary", teacherInfo.TeacherSalary);
             cmd.Prepare();
 
